@@ -53,7 +53,7 @@ class StudentItem(Resource):
     @api.response(204, 'Student successfully deleted.')
     def delete(self, id):
         """
-        Deletes student.
+        Deletes a student.
         """
         delete_student(id)
         return None, 204
