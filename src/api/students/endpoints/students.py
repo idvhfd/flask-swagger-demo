@@ -14,7 +14,7 @@ ns = api.namespace('students', description='Operations related to students')
 
 @ns.route('/')
 class StudentCollection(Resource):
-
+    @api.marshal_with(serial_student)
     def get(self):
         """
         Returns list of all students.
@@ -33,7 +33,7 @@ class StudentCollection(Resource):
 @ns.route('/<int:id>')
 @api.response(404, 'Student not found.')
 class StudentItem(Resource):
-
+    @api.marshal_with(serial_student)
     def get(self, id):
         """
         Returns a student.
