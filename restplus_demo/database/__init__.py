@@ -5,6 +5,6 @@ db = SQLAlchemy()
 
 
 def reset_database():
-    from src.database.models import Student  # noqa
+    from restplus_demo.database.models import Student  # noqa
     db.drop_all()
     db.create_all()

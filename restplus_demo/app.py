@@ -5,10 +5,10 @@ import os
 from flask import Flask, Blueprint
 from flask_restplus import Resource, Api
 
-from src import settings
-from src.database import db
-from src.api.restplus import api
-from src.api.students.endpoints.students import ns as students_namespace
+from restplus_demo import settings
+from restplus_demo.database import db
+from restplus_demo.api.restplus import api
+from restplus_demo.api.students.endpoints.students import ns as students_namespace
 
 app = Flask(__name__)
 

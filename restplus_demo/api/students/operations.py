@@ -1,5 +1,5 @@
-from src.database import db
-from src.database.models import Student
+from restplus_demo.database import db
+from restplus_demo.database.models import Student
 
 
 def create_student(data):

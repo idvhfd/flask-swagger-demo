@@ -1,5 +1,5 @@
 from flask_restplus import fields
-from src.api.restplus import api
+from restplus_demo.api.restplus import api
 
 serial_student = api.model('Student', {
     'id': fields.Integer(readOnly=True, description='The unique identifier of a student'),

@@ -2,10 +2,10 @@ import logging
 
 from flask import request
 from flask_restplus import Resource
-from src.api.students.operations import create_student, delete_student, update_student
-from src.api.students.serializers import serial_student
-from src.api.restplus import api
-from src.database.models import Student
+from restplus_demo.api.students.operations import create_student, delete_student, update_student
+from restplus_demo.api.students.serializers import serial_student
+from restplus_demo.api.restplus import api
+from restplus_demo.database.models import Student
 
 log = logging.getLogger(__name__)
 
@@ -14,12 +14,13 @@ ns = api.namespace('students', description='Operations related to students')
 
 @ns.route('/')
 class StudentCollection(Resource):
-    @api.marshal_with(serial_student)
+    @api.marshal_list_with(serial_student)
     def get(self):
         """
         Returns list of all students.
         """
-        return Student.query
+        students = Student.query.all()
+        return students
 
     @api.expect(serial_student)
     def post(self):

@@ -1,4 +1,4 @@
-from src.database import db
+from restplus_demo.database import db
 
 
 class Student(db.Model):
