@@ -6,6 +6,7 @@ from restplus_demo.api.students.operations import create_student, delete_student
 from restplus_demo.api.students.serializers import serial_student
 from restplus_demo.api.restplus import api
 from restplus_demo.database.models import Student
+from restplus_demo.api.students.schemas import StudentSchema
 
 log = logging.getLogger(__name__)
 
@@ -14,13 +15,14 @@ ns = api.namespace('students', description='Operations related to students')
 
 @ns.route('/')
 class StudentCollection(Resource):
-    @api.marshal_list_with(serial_student)
+    #@api.marshal_list_with(serial_student)
     def get(self):
         """
         Returns list of all students.
         """
         students = Student.query.all()
-        return students
+        data = StudentSchema(many=True).dump(students)
+        return data
 
     @api.expect(serial_student)
     def post(self):
@@ -34,12 +36,14 @@ class StudentCollection(Resource):
 @ns.route('/<int:id>')
 @api.response(404, 'Student not found.')
 class StudentItem(Resource):
-    @api.marshal_with(serial_student)
+    #@api.marshal_with(serial_student)
     def get(self, id):
         """
         Returns a student.
         """
-        return Student.query.filter(Student.id == id).one()
+        student = Student.query.filter(Student.id == id).one()
+        data = StudentSchema().dump(student)
+        return data
 
     @api.expect(serial_student)
     @api.response(204, 'Student successfully updated.')

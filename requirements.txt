@@ -1,2 +1,4 @@
 flask-restplus==0.12.1
 Flask-SQLAlchemy==2.3.1
+marshmallow-jsonapi==0.21.0
+marshmallow=2.18.1
